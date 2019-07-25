@@ -5,9 +5,21 @@ var tableData = data;
 var dateData = data;
 
 // Select the filter button
-var filter = d3.select("#filter-btn");
+var filter = d3.select("#filter-btn"); 
+var clear = d3.select("#clear-btn");
 
-filter.on("click", function() {
+
+clear.on("click", "#clear-btn", function() {
+    // Prevent the page from refreshing
+     d3.event.preventDefault();
+
+    // Clear content of the table
+    var tbody = d3.select("tbody");
+    document.getElementById(tbody).innerHTML = "";
+
+});
+
+filter.on("click", function() {  
 
   // Prevent the page from refreshing
   d3.event.preventDefault();
@@ -33,7 +45,8 @@ filter.on("click", function() {
       Object.entries(input).forEach(function([key,value]) {
           row.append("td").text(value);
       });
-    
+
     });
+    
 
 });
